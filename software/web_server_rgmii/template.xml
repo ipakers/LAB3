@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template_settings>
+	<template
+		name="Web Server (RGMII)"
+		description="Runs a web server from a file system in flash memory"
+		file_to_open="web_server.c"
+		details="Web Server demonstrates how to initialize the NicheStack and run a basic HTTP server application to serve web pages from a file system in flash memory via Ethernet. This example uses the industry standard Sockets interface to TCP/IP.
+			\n\nThis example requires the MicroC/OS-II RTOS, NicheStack TCP/IP Stack - Nios II Edition, and Read-Only Zip File system software components. It also requires several peripherals, including a lan91c111 Ethernet MAC. 
+			\n
+			\nFor details, click Finish to create the project and refer to the readme.txt file in the project directory.
+			\n
+			\nThe BSP for this template is based on the Micrium MicroC/OS-II operating system. 
+			\n
+			\nFor information about how this software example relates to Nios II hardware design examples,
+			\nrefer to the Design Examples page of the Nios II documentation available with your installation at:
+			\n&lt;installation_directory&gt;/nios2eds/documents/index.htm.
+			">
+	</template>
+	<stf>
+		<os_spec
+			name="MicroC/OS-II">
+			<sw_component
+				name="NicheStack TCP/IP Stack"
+				id="INICHE">
+				<sys_defines>
+					<define name="iniche_default_if" quote="yes" value="lan91c111"/>
+					<define name="dhcp_client" value="1" quote="no"/>
+					<define name="ip_fragments" value="1" quote="no"/>
+					<define name="include_tcp" value="1" quote="no"/>
+				</sys_defines>
+			</sw_component>
+			<sw_component
+				name="Altera Zip Read-Only File System"
+				id="ROZIPFS">
+				<sys_defines>
+					<define name="altera_ro_zipfs_offset" value="0x100000" quote="no"/>
+					<define name="altera_ro_zipfs_name" quote="yes" value="/mount/rozipfs"/>
+	             	<define name="altera_ro_zipfs_base" quote="no" value="0"/>
+				</sys_defines>
+				<make_macros>
+					<macro name="altera_ro_zipfs_offset" value="0x100000" quote="no"/>
+					<macro name="altera_ro_zipfs_flash_name" quote="no" value="ext_flash"/>
+					<macro name="altera_ro_zipfs_zip_name" value="ro_zipfs.zip" quote="no"/>
+					<macro name="altera_ro_zipfs_base" quote="no" value="0"/>
+           			<macro name="altera_ro_zipfs_designator" quote="no" value="U5"/>
+				</make_macros>
+			</sw_component>
+		</os_spec>
+	</stf>
+	<create-this>
+		<app 	name="web_server_rgmii"
+  			nios2-app-generate-makefile-args="--set OBJDUMP_INCLUDE_SOURCE 1 --src-files web_server.c network_utilities.c srec_flash.c http.c alt_error_handler.c tse_my_system.c"
+  			bsp="ucosii_net_zipfs_rgmii"
+  			message="Web Server contents must be programmed to the flash for the example to function correctly.
+				\nPlease use the bin2flash utility to create the flash image and the nios2-flash-programmer to program the flash.
+				\n\t- bin2flash --input=[ZIP_FILE_LOCATION] --output=[FLASH_FILE] --location=0x100000
+				\n\t- nios2-flash-programmer --base=[FLASH_BASE_ADDR] --program [FLASH_FILE]
+				\n">
+  		</app>
+  		<bsp 	name="ucosii_net_zipfs_rgmii" 
+  			type="ucosii"
+  			nios2-bsp-args="--set hal.make.bsp_cflags_defined_symbols -DTSE_MY_SYSTEM --cmd enable_sw_package altera_ro_zipfs --cmd enable_sw_package altera_iniche">
+  		</bsp>
+	</create-this>			
+</template_settings>
+
+

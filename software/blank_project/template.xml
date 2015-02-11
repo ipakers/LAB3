@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template_settings>
+	<template
+		name="Blank Project"
+		description="Creates a blank project"
+		details="Blank Project creates an empty project to which you can add your code.
+			\n
+			\nFor details, click Finish to create the project and refer to the readme.txt file in the project directory.
+			\n
+			\nThe BSP for this template is based on the Altera HAL operating system. To use a BSP based on a different
+			\noperating system, click Next and select the BSP from the BSP projects list.
+			\n
+			\nFor information about how this software example relates to Nios II hardware design examples,
+			\nrefer to the Design Examples page of the Nios II documentation available with your installation at:
+			\n&lt;installation_directory&gt;/nios2eds/documents/index.htm.
+			">
+	</template>
+	<create-this>
+		<app 	name="blank_project"
+			nios2-app-generate-makefile-args="--no-src --set OBJDUMP_INCLUDE_SOURCE 1"
+			bsp="hal_default">
+		</app>
+		<bsp 	name="hal_default" type="hal"></bsp>
+	</create-this>
+</template_settings>

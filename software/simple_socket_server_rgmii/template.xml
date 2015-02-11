@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template_settings>
+	<template
+		name="Simple Socket Server (RGMII)"
+		description="Runs a TCP/IP socket server"
+		file_to_open="simple_socket_server.c"
+		details="Simple Socket Server uses the industry standard Sockets interface to TCP/IP. This application shows how to initialize the NicheStack TCP/IP Stack and run a simple TCP server application, allowing a PC to communicate with a Nios II system via Ethernet. 
+			\n
+			\nThis example requires the MicroC/OS-II RTOS and NicheStack TCP/IP Stack - Nios II Edition software components. It also requires several peripherals, including a lan91c111 Ethernet MAC. 
+			\n
+			\nFor details, click Finish to create the project and refer to the readme.txt file in the project directory.
+			\nAlso refer to the Altera NicheStack tutorial, which demonstrates how to use this software design.
+			\n
+			\nThe BSP for this template is based on the Micrium MicroC/OS-II operating system.
+			\n
+			\nFor information about how this software example relates to Nios II hardware design examples,
+			\nrefer to the Design Examples page of the Nios II documentation available with your installation at:
+			\n&lt;installation_directory&gt;/nios2eds/documents/index.htm.
+			">
+	</template>
+	<stf>
+		<os_spec
+			name="MicroC/OS-II">
+			<sw_component
+				name="NicheStack TCP/IP Stack"
+				id="INICHE">
+				<sys_defines>
+					<define name="iniche_default_if" quote="yes" value="lan91c111"/>
+					<define name="dhcp_client" value="1" quote="no"/>
+					<define name="ip_fragments" value="1" quote="no"/>
+					<define name="include_tcp" value="1" quote="no"/>
+				</sys_defines>
+			</sw_component>
+		</os_spec>
+	</stf>
+	<create-this>
+		<app 	name="simple_socket_server_rgmii"
+			nios2-app-generate-makefile-args=" --set OBJDUMP_INCLUDE_SOURCE 1 --src-files alt_error_handler.c iniche_init.c led.c network_utilities.c simple_socket_server.c tse_my_system.c"
+			bsp="ucosii_net_rgmii">
+		</app>
+		<bsp 	name="ucosii_net_rgmii" 
+			type="ucosii"
+			nios2-bsp-args="--set hal.make.bsp_cflags_defined_symbols -DTSE_MY_SYSTEM --cmd enable_sw_package altera_iniche">
+		</bsp>
+	</create-this>
+</template_settings>

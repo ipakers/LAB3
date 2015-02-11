@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<template_settings>
+	<template
+		name="Hello MicroC/OS-II" 
+		file_to_open="hello_ucosii.c"
+		description="Prints 'Hello from Nios II' using the MicroC/OS-II RTOS" 
+		details="Hello MicroC/OS-II uses the MicroC/OS-II RTOS. You can use this example as a starting point for developing Nios II MicroC/OS-II applications.
+			\n
+			\nFor details, click Finish to create the project and refer to the readme.txt file in the project directory.
+			\n
+			\nThe BSP for this template is based on the Micrium MicroC/OS-II operating system.
+			\n
+			\nFor information about how this software example relates to Nios II hardware design examples,
+			\nrefer to the Design Examples page of the Nios II documentation available with your installation at:
+			\n&lt;installation_directory&gt;/nios2eds/documents/index.htm.
+			">
+	</template>
+	<stf>
+		<os_spec name="MicroC/OS-II">
+    		</os_spec>
+  	</stf>
+	<create-this>
+		<app 	name="hello_ucosii"
+  			nios2-app-generate-makefile-args="--set OBJDUMP_INCLUDE_SOURCE 1 --src-files hello_ucosii.c"
+  			bsp="ucosii_default">
+  		</app>
+  		<bsp 	name="ucosii_default" type="ucosii">
+  		</bsp>
+	</create-this>	
+</template_settings>

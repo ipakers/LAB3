@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<template_settings>
+	<template
+		name="Hello Freestanding" 
+		description="Prints 'Hello from Nios II' from a freestanding application" 
+		file_to_open="hello_alt_main.c"
+		details="Hello Freestanding is functionally equivalent to Hello World, but uses alt_main() as its entry point for advanced control of program initialization.
+			\n\nThis example runs with or without the MicroC/OS-II RTOS. It requires an STDOUT device in your system's hardware.
+			\n
+			\nFor details, click Finish to create the project and refer to the readme.txt file in the project directory.
+			\n
+			\nThe BSP for this template is based on the Altera HAL operating system.
+			\n
+			\nFor information about how this software example relates to Nios II hardware design examples,
+			\nrefer to the Design Examples page of the Nios II documentation available with your installation at:
+			\n&lt;installation_directory&gt;/nios2eds/documents/index.htm.
+			">
+	</template>
+	<create-this>
+		<app 	name="hello_alt_main"
+			nios2-app-generate-makefile-args="--set OBJDUMP_INCLUDE_SOURCE 1 --src-files hello_alt_main.c"
+			bsp="hal_default">
+		</app>
+		<bsp 	name="hal_default" type="hal"></bsp>
+	</create-this>
+</template_settings>

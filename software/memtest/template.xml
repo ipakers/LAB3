@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template_settings>
+	<template
+		name="Memory Test"
+		description="Runs diagnostic tests on both volatile and flash memory"
+		file_to_open="memtest.c"
+		details="Memory Test allows you to test the RAM and flash memory on your board. The application presents a menu to choose which memory to test.
+			\n
+			\nBecause the RAM test is destructive, do not run the RAM test on any memory being used by this program, including code, data, and exception locations.
+			\n
+			\nFor details, click Finish to create the project and refer to the readme.txt file in the project directory.
+			\n
+			\nThe BSP for this template is based on the Altera HAL operating system.
+			\n
+			\nFor information about how this software example relates to Nios II hardware design examples,
+			\nrefer to the Design Examples page of the Nios II documentation available with your installation at:
+			\n&lt;installation_directory&gt;/nios2eds/documents/index.htm.
+			">
+	</template>
+	<create-this>
+		<app 	name="memtest"
+			nios2-app-generate-makefile-args="--set OBJDUMP_INCLUDE_SOURCE 1 --src-files memtest.c"
+			bsp="hal_default">
+		</app>
+		<bsp 	name="hal_default" type="hal"></bsp>
+	</create-this>
+</template_settings>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template_settings>
+	<template
+		name="Float2 Performance"
+		description="Measures performance of Floating Point Hardware 2"
+		details="Float2 Performance compares the performance of floating-point operations using the Floating Point Hardware 2 custom instructions vs. software emulation.  After each operation is performed, a table is printed showing the performance of the custom instructions and software emulation.
+           \n
+           \nThis code must be compiled with GCC optimization level -O2.
+           \n
+           \nThe Floating Point Hardware 2 component is the 2nd generation of floating-point custom instructions for Nios II.  It offers improved performance, hardware acceleration of more operations, and reduced resource usage relative to the 1st generation.  Results are not fully IEEE 754 compliant due to the implementation of simplified rounding.
+           \n
+           \nSystem Requirements
+           \n*******************
+           \nThe following component must be connected to the Nios II:
+           \n  - 'Floating Point Hardware 2' component
+           \n  - 'Performance Counter Unit' component
+           \n    - Named 'performance_counter_0'
+           \n    - At least 2 sections
+           \n    - Must be connected to Nios II clock
+           \n  - Some character device (e.g. JTAG UART)
+			">
+	</template>
+	<create-this>
+		<app 	name="float2_performance"
+			nios2-app-generate-makefile-args="--set APP_CFLAGS_OPTIMIZATION -O2 --src-files float2_performance.c float2_performance_hw.c float2_performance_sw.c"
+			bsp="hal_default">
+		</app>
+		<bsp 	
+			name="hal_default" 
+			type="hal" 
+			nios2-bsp-args="--set hal.make.bsp_cflags_optimization -O2">
+		</bsp>
+	</create-this>	
+</template_settings>
